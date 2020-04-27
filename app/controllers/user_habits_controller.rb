@@ -28,5 +28,11 @@ class UserHabitsController < ApplicationController
     end
   end
 
+  def destroy
+    @user_habit = UserHabit.find(params[:id])
+    @user_habit.destroy
+    # redirect_to users_path
+  end
+
 
 end
