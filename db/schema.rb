@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_27_220631) do
+ActiveRecord::Schema.define(version: 2020_04_28_231533) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,8 +21,6 @@ ActiveRecord::Schema.define(version: 2020_04_27_220631) do
     t.string "img"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "daily_goal"
-    t.integer "weekly_goal"
   end
 
   create_table "user_habits", force: :cascade do |t|
@@ -30,6 +28,11 @@ ActiveRecord::Schema.define(version: 2020_04_27_220631) do
     t.integer "habit_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "daily_goal"
+    t.integer "weekly_goal"
+    t.string "name"
+    t.string "img"
+    t.string "category"
   end
 
   create_table "users", force: :cascade do |t|

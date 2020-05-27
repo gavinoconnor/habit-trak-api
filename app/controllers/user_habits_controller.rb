@@ -15,8 +15,22 @@ class UserHabitsController < ApplicationController
   end
 
   def create
-    @user_habit = UserHabit.create(user_id: params[:user_id], habit_id: params[:habit_id])
+    @user_habit = UserHabit.new(user_habit_params)
     if @user_habit.save
+      render json: {
+        user_habit: @user_habit
+      }
+    else
+      render json: {
+        status: 500,
+        errors: @user_habit.errors.full_messages
+      }
+    end
+  end
+
+  def update
+    @user_habit = UserHabit.find(params[:id])
+    if @user_habit.update(user_habit_params)
       render json: {
         user_habit: @user_habit
       }
@@ -30,8 +44,25 @@ class UserHabitsController < ApplicationController
 
   def destroy
     @user_habit = UserHabit.find(params[:id])
-    @user_habit.destroy
-    # redirect_to users_path
+    if @user_habit.destroy
+      render json: {
+        status: 200
+      }
+    end
+  end
+
+  private
+
+  def user_habit_params
+    params.permit(
+      :user_id,
+      :habit_id,
+      :daily_goal,
+      :weekly_goal,
+      :name,
+      :img,
+      :category
+    )
   end
 
 
