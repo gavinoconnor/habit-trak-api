@@ -57,7 +57,7 @@ class UserHabitsController < ApplicationController
     params.permit(
       :user_id,
       :habit_id,
-      :daily_goal,
+      :activation_count,
       :weekly_goal,
       :name,
       :img,
